@@ -1,14 +1,17 @@
+import json
+
 from faker import Faker
+
 fake_ru = Faker('ru_RU')
 
-# fake_ru.phone_number(), fake_ru.job(), fake_ru.address()
+dict_ = {}
+for i in range(250):
+    name = fake_ru.name()
+    phone = fake_ru.phone_number()
+    job = fake_ru.job()
+    address = fake_ru.address()
+    dict_[i] = {name:[address, job, phone]}
+    with open('DS.txt', 'w', encoding='utf8') as f:
+        json.dump(dict_, f, indent=4, ensure_ascii=False)
 
 
-def data():
-    return fake_ru.name()
-
-
-f = open('task.txt', 'w', encoding='utf8')
-
-for i in range(10):
-    f.write(data())
